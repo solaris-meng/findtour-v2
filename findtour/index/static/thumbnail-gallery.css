@@ -1,0 +1,33 @@
+/*!
+ * Start Bootstrap - Thumbnail Gallery HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+.thumb {
+    margin-bottom: 30px;
+    margin-bottom: 0px;
+    text-align: center;
+}
+.thumb p{
+    font-size: 20px;
+    color:black;
+    color: rgb(86, 90, 92);
+}
+.thumb a .txt-pic {
+    position: absolute;
+    top:30%;
+    width: 100%;
+    height: 40px;
+}
+.thumb a .txt-pic p{
+    font-size: 40px;
+    color:white;
+    font-weight:bold;
+    text-align: center;
+    position: relative;
+}
+
+footer {
+    margin: 50px 0;
+}

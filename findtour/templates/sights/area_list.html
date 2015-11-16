@@ -1,0 +1,149 @@
+
+{% extends "index/base.html" %}
+{% load staticfiles %}
+
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'sights/sights.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid sights-area-list-tl-con">
+    <div class="row">
+        <div class="col-md-12 sights-area-list-tl">
+            <img src="{% static 'pic_kekexili.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            <div class="sights-area-list-tl-relative">
+                <p>Destinations</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container sight-padding-0">
+    <div class="row sights-area-main">
+        <div class="sights-area-tl col-md-12">
+            <p>Silk Road</p>
+        </div>
+        <div class="col-md-8 sights-area-main-pic-con">
+            <img src="{% static 'sichouzhilu2_Fotor.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+        </div>
+        <div class="col-md-4">
+            <div class="sights-area-main-tl">
+                <p>Key Words</p>
+            </div>
+            <div class="sights-area-main-it sight-margin">
+                <p>Mogao Caves, Terracotta Army, Longmen Grottoes</p>
+            </div>
+            <div class="sights-area-main-tl">
+                <p>Involved Citys</p>
+            </div>
+            <div class="sights-area-main-it">
+                <p>Xian, Luoyang, Lanzhou, Wuwei, Zhangye, Jiuquan, Dunhuang, Guazhou, Turpan, Korla, Kashgar, Urumqi, Kashgar, Kuqa</p>
+            </div>
+            <div class="sights-area-map">
+                <img src="{% static 'map_silkroad_Fotor.jpg' %}">
+            </div>
+        </div>
+    </div>
+    <div class="row sights-area-sight">
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/mogao_caves">
+            <img src="{% static 'pic_dunhuang_small_xiqianfodong_1.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Mogao Caves, Dunhuang</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/terracotta_army">
+            <img src="{% static 'pic_xian_normal_bingmayong_1.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Terracotta Army, Xian</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/suoyang_ruin">
+            <img src="{% static 'pic_dunhuang_normal_suoyangcheng_3.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Suoyang Ruin, Guazhou</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/jiaohe_ruins">
+            <img src="{% static 'pic_jiaohegucheng1.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Jiaohe Ruins, Turpan</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/danxia_park">
+            <img src="{% static 'pic_zhangye1_Fotor.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Danxia Geological Park, Zhangye</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/yulin_cave">
+            <img src="{% static 'pic_dunhuang_yulin_6_Fotor.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Yulin Caves, Dunhuang</p>
+        </div>
+    </div>
+    <div class="row sights-area-main">
+        <div class="col-md-12 sights-area-tl">
+            <p>Beijing</p>
+        </div>
+        <div class="col-md-8 sights-area-main-pic-con">
+            <img src="{% static 'pic_gugong_1.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+        </div>
+        <div class="col-md-4">
+            <div class="sights-area-main-tl">
+                <p>Key Words</p>
+            </div>
+            <div class="sights-area-main-it sight-margin">
+                <p>Greatwall, Summer Palace, Forbidden City, Hutong, Classical Cuture, National Museums</p>
+            </div>
+            <div class="sights-area-main-tl">
+                <p>Involved Citys</p>
+            </div>
+            <div class="sights-area-main-it">
+                <p>Beijing</p>
+            </div>
+        </div>
+    </div>
+    <div class="row sights-area-sight">
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/jinshanling_greatwall">
+            <img src="{% static 'pic_jinshanling_1.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Jinshanling Greatwall, Beijing</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/summer_palace">
+            <img src="{% static 'pic_small_yiheyuan_1.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Summer Palace, Beijing</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/badaling_greatwall">
+            <img src="{% static 'pic_small_badaling_3.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Badaling Greatwall, Beijing</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/forbbiden_city">
+            <img src="{% static 'pic_gugong_2_Fotor.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Forbbiden City, Beijing</p>
+        </div>
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/mutianyu_greatwall">
+            <img src="{% static 'pic_beijing_mutianyu_3_Fotor.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Mutianyu Greatwall, Beijing</p>
+        </div>
+<!--
+        <div class="col-md-4 sights-area-sight-pic-con">
+            <a href="/sights/mutianyu_greatwall">
+            <img src="{% static 'pic_zhangye1_Fotor.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            </a>
+            <p>Mogao Caves, Dunhuang</p>
+        </div>
+-->
+    </div>
+</div>
+
+{% endblock %}

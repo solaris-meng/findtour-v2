@@ -1,0 +1,18 @@
+
+{% extends "index/base.html" %}
+{% load staticfiles %}
+
+{% block customcss %}
+<link type="text/css" rel="stylesheet" href="{% static 'index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <h1>Thanks for submitting, our travel specialist will contact you via email as soon as possible.</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

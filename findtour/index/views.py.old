@@ -1,0 +1,513 @@
+from django.shortcuts import render
+from django.http import HttpResponse
+from django.template import RequestContext, loader
+from django.core.mail import send_mail
+
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate,login
+
+from .models import Tour
+from .forms import TourBookForm,RegisterForm,LoginForm,CharterForm,PickupForm
+from .tourlog import *
+from tourglobal import *
+
+#xml
+try:
+    import xml.etree.cElementTree as ET 
+except ImportError: 
+    import xml.etree.ElementTree as ET 
+
+import time
+
+# Create your views here.
+def index(request):
+    Flog.info("PV, index_view")
+    #return HttpResponse("hello world")
+    if CDN_FINDTOUR:
+        template = loader.get_template('tours/index.html')
+    else:
+        template = loader.get_template('tours/index.html')
+
+    if request.user.is_authenticated():
+        username = "Welcome %s" % request.user.username
+    else:
+        username = 'Welcome '
+    ctx = {}
+    ctx['username'] = username
+
+    # for slider
+    slider_pic = []
+    slider = ['normal_haituo_2.jpg',
+        'normal_jinshanling_1.jpg',
+        'normal_bingmayong_1.jpg']
+    for pic in slider:
+        slider_pic.append("%s%s" % (CUR_PREFIX, pic))
+    ctx['slider_pic'] = slider_pic
+
+    # for list
+    list_pic = []
+    list_pic.append({"pic":"%ssmall_jinshanling_11.jpg" % CUR_PREFIX, 'name':'Beijing'})
+    list_pic.append({"pic":"%snormal_bingmayong_1.jpg" % CUR_PREFIX, 'name':'Xi An'})
+    list_pic.append({"pic":"%snormal_dunhuang_1.jpg" % CUR_PREFIX, 'name':'Dun Huang'})
+    list_pic.append({"pic":"%snormal_foxueyuan_1.jpg" % CUR_PREFIX, 'name':'Cheng Du'})
+    list_pic.append({"pic":"%ssmall_qinghaihu_1.jpg" % CUR_PREFIX, 'name':'Xi Ning'})
+    list_pic.append({"pic":"%ssmall_shanxi_1.jpg" % CUR_PREFIX, 'name':'Shan Xi'})
+
+    ctx['slider_pic'] = slider_pic
+    ctx['list_pic'] = list_pic
+
+    # for debug
+    if DEBUG_MODE == 'local':
+        ctx['static_mode'] = 'local'
+
+    context = RequestContext(request, ctx)
+    return HttpResponse(template.render(context))
+
+def test(request):
+    template = loader.get_template('tours/test.html')
+    context = RequestContext(request, { 'test':'success', })
+    return HttpResponse(template.render(context))
+def testmap(request):
+    template = loader.get_template('tours/testmap.html')
+    context = RequestContext(request, { 'test':'success', })
+    return HttpResponse(template.render(context))
+def testcomments(request):
+    template = loader.get_template('tours/testcomments.html')
+    context = RequestContext(request, { 'test':'success', })
+    return HttpResponse(template.render(context))
+
+def register_view(request):
+    template = loader.get_template('tours/register.html')
+    context = RequestContext(request, { 'test':'success', })
+    return HttpResponse(template.render(context))
+
+def create_user(args):
+    username = args['username']
+    email = args['email']
+    password = args['password']
+
+    try:
+        user = User.objects.create_user(username, email, password)
+        user.save()
+        return 'success'
+    except Exception,e:
+        return 'error'
+
+
+def login_result(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+
+        # Parse data
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            LoginLog.info("Login, username=%s, password=%s" % (username, password))
+
+            # user login
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    try:
+                        login(request, user)
+                        result = 'success'
+                    except Exception,e:
+                        result = 'error'
+                else:
+                    result = 'disabled account'
+            else:
+                result = 'invalid login'
+
+            # Failed page
+            if result != 'success':
+                return HttpResponse(result);
+
+            # template
+            ctx = {}
+            ctx['username'] = username
+
+            template = loader.get_template('tours/login_result.html')
+
+            context = RequestContext(request, ctx)
+            return HttpResponse(template.render(context))
+        else:
+            return HttpResponse("Please check your input.");
+
+    return HttpResponse("Internal Error")
+
+
+def register_result(request):
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+
+        # Parse data
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+
+            RegisterLog.info("Register, username=%s, email=%s, password=%s" % (username, email, password))
+
+            # args 
+            args = {}
+            args['username'] = username
+            args['email'] = email
+            args['password'] = password
+
+            # create user
+            rv = create_user(args)
+            if rv == 'error':
+                return HttpResponse("Please check your input.");
+
+            # template
+            ctx = {}
+            ctx['username'] = username
+            template = loader.get_template('tours/register_result.html')
+
+            context = RequestContext(request, ctx)
+            return HttpResponse(template.render(context))
+        else:
+            return HttpResponse("Please check your input.");
+
+    return HttpResponse("Internal Error")
+
+def login_view(request):
+    template = loader.get_template('tours/login.html')
+    context = RequestContext(request, { 'test':'success', })
+    return HttpResponse(template.render(context))
+
+def register(request):
+    if False:
+        user = User.objects.create_user('ermeng', 'dongmeng@oracle.com', 'ermeng')
+        user.last_name = 'dong'
+        user.save()
+
+    rv = ''
+    if True:
+        user = authenticate(username='ermeng', password='ermeng')
+        if user is not None:
+            if user.is_active:
+                rv = "User is valid, active and authenticated"
+            else:
+                rv = "The password is valid, but the account has been disabled!"
+        else:
+            rv = "The username and password were incorrect."
+
+    request.session['myname'] = rv
+    test = request.session.keys()
+    arr = {}
+    arr['test'] = request.session['myname']
+    template = loader.get_template('tours/register.html')
+    context = RequestContext(request, arr)
+    return HttpResponse(template.render(context))
+
+def book(request, tour_name):
+    template = loader.get_template('tours/book.html')
+    tour = Tour.objects.get(name=tour_name)
+    args = {}
+    args['name'] = tour.name
+    context = RequestContext(request, args)
+    return HttpResponse(template.render(context))
+
+# View - XML Mapping
+VIEW_XML_MAP = {
+    'forbidden_city':'xml-beijing-gugong-hutong-selfguided-oneday',
+    'tian_an_men_west':'xml-beijing-gugong-hutong-selfguided-oneday',
+    'beihai_park':'xml-beijing-gugong-hutong-selfguided-oneday',
+    'shi_cha_hai':'xml-beijing-gugong-hutong-selfguided-oneday',
+    'zhong_gu_lou':'xml-beijing-gugong-hutong-selfguided-oneday',
+    'gu_lou_hu_tong':'xml-beijing-gugong-hutong-selfguided-oneday',
+    'ding_tai_feng':'xml-beijing-palace-and-museum-selfguided-oneday',
+    'summer_palace':'xml-beijing-palace-and-museum-selfguided-oneday',
+    'national_museum':'xml-beijing-palace-and-museum-selfguided-oneday',
+    'jinshanling_greatwall':'xml-beijing-greatwall-jinshanling-selfguided-oneday',
+    'badaling_caritive_greatwall':'xml-beijing-greatwall-badaling-old-selfguided-oneday',
+    'xi_qian_fo_dong':'xml-dunhuang-xiqianfodong-selfguided-oneday',
+    'yu_lin_cave':'xml-dunhuang-yulin-selfguided-oneday',
+    'dong_qian_fo_dong':'xml-dunhuang-yulin-selfguided-oneday',
+    'suo_yang_city':'xml-dunhuang-yulin-selfguided-oneday',
+    'terracotta_army':'xml-xian-bingmayong-selfguided-oneday',
+    'huaqing_palace':'xml-xian-bingmayong-selfguided-oneday',
+    'mutianyu_greatwall':'xml-beijing-greatwall-mutianyu-selfguided-oneday',
+    }
+def view(request, slug):
+    Flog.info("view: slug-%s" % slug)
+
+    file_path = '%s%s' % (XML_FILE_LOCATION, VIEW_XML_MAP[slug])
+    tree = ET.parse(file_path)
+    root = tree.getroot()
+
+    node_tour = root.find('tour')
+    node_guide = root.find('guide')
+    rv = []
+    for node in node_guide.findall('node'):
+        # find the target node
+        if node.find('slug').text != slug:
+            continue
+
+        # find
+        if CN:
+            node_name = node.find('name_cn').text
+        else:
+            node_name = node.find('name_en').text
+
+        pic_guides = node.find('pic_guides')
+        for pic_guide in pic_guides.findall('pic_guide'):
+            dic={}
+            if CN:
+                dic['name'] = pic_guide.find('name_cn').text
+                dic['text'] = pic_guide.find('text_cn').text
+            else:
+                dic['name'] = pic_guide.find('name_en').text
+                dic['text'] = pic_guide.find('text_en').text
+            pics=[]
+            pics_xml = pic_guide.find('pics')
+            if pics_xml != None:
+                for pic in pics_xml.findall('pic'):
+                    pic_address = '%s%s' % (CUR_PREFIX, pic.text)
+                    pics.append(pic_address)
+            dic['pics'] = pics
+            rv.append(dic)
+        break
+            
+    template = loader.get_template('tours/tour_view.html')
+    #tour = Tour.objects.get(name=tour_name)
+    args = {}
+    args['rv'] = rv
+    args['name'] = node_name
+    context = RequestContext(request, args)
+    return HttpResponse(template.render(context))
+
+def handler_email_to_file(xml):
+    f = open("%s" % OrderLog_file, "a+")
+    f.write(xml)
+    f.close()
+    return
+def handler_email(form,service):
+    from_email,to = 'isolate000@sina.cn','113153207@qq.com'
+    subject = "Tour Order"
+    create_time = time.strftime("%Y-%m-%dT%H:%M:%S.000Z", time.gmtime())
+
+    xml_content = 'xml is null'
+    html_content = 'html is null'
+
+    if form.is_valid():
+        xml_content = r'<tour_order>'
+
+        xml_content += r'<info>'
+        xml_content += r'<service>'
+        xml_content += service
+        xml_content += r'</service>'
+        xml_content += r'<create_time>'
+        xml_content += create_time
+        xml_content += r'</create_time>'
+        xml_content += r'</info>'
+
+        xml_content += r'<form>'
+        xml_content += r'<location>'
+        xml_content += form.cleaned_data['location']
+        xml_content += r'</location>'
+        xml_content += r'<car>'
+        xml_content += form.cleaned_data['car']
+        xml_content += r'</car>'
+        xml_content += r'<date>'
+        xml_content += form.cleaned_data['date']
+        xml_content += r'</date>'
+        xml_content += r'<fname>'
+        xml_content += form.cleaned_data['fname']
+        xml_content += r'</fname>'
+        xml_content += r'<email>'
+        xml_content += form.cleaned_data['email']
+        xml_content += r'</email>'
+
+        if service == 'charter':
+            xml_content += r'<days>'
+            xml_content += form.cleaned_data['days']
+            xml_content += r'</days>'
+            xml_content += r'<itinerary>'
+            xml_content += form.cleaned_data['itinerary']
+            xml_content += r'</itinerary>'
+        else:
+            xml_content += r'<service>'
+            xml_content += form.cleaned_data['service']
+            xml_content += r'</service>'
+            xml_content += r'<flight>'
+            xml_content += form.cleaned_data['flight']
+            xml_content += r'</flight>'
+            xml_content += r'<destination>'
+            xml_content += form.cleaned_data['destination']
+            xml_content += r'</destination>'
+
+        xml_content += r'</form>'
+        xml_content += r'</tour_order>'
+        xml_content += '\n'
+
+
+        html_content = r'<!DOCTYPE html>'
+        html_content += r'<h1>'
+        html_content += r'Request'
+        html_content += r'</h1>'
+
+        # service
+        html_content += r'<h2>'
+        if service == 'charter':
+            html_content += 'Service: charter'
+        else:
+            html_content += 'Service:'+form.cleaned_data['service']
+        html_content += r'</h2>'
+
+        # create
+        html_content += r'<h2>'
+        html_content += 'Create: '+create_time
+        html_content += r'</h2>'
+        # date
+        html_content += r'<h2>'
+        html_content += 'Date:'+form.cleaned_data['date']
+        html_content += r'</h2>'
+        # location
+        html_content += r'<h2>'
+        html_content += 'Location:'+form.cleaned_data['location']
+        html_content += r'</h2>'
+        # car
+        html_content += r'<h2>'
+        html_content += 'Car:'+form.cleaned_data['car']
+        html_content += r'</h2>'
+        # fname
+        html_content += r'<h2>'
+        html_content += 'Fname:'+form.cleaned_data['fname']
+        html_content += r'</h2>'
+        # fname
+        html_content += r'<h2>'
+        html_content += 'Email:'+form.cleaned_data['email']
+        html_content += r'</h2>'
+
+        if service == 'charter':
+            # days
+            html_content += r'<h2>'
+            html_content += 'Days:'+form.cleaned_data['days']
+            html_content += r'</h2>'
+            # itinerary
+            html_content += r'<h2>'
+            html_content += 'Itinerary:'+form.cleaned_data['itinerary']
+            html_content += r'</h2>'
+        else:
+            # flight
+            html_content += r'<h2>'
+            html_content += 'Flight:'+form.cleaned_data['flight']
+            html_content += r'</h2>'
+            # destination 
+            html_content += r'<h2>'
+            html_content += 'Destination:'+form.cleaned_data['destination']
+            html_content += r'</h2>'
+    else:
+        # For error Log
+        Flog.error("xml-error: %s" % form.errors)
+        return "Error"
+
+    Flog.info("RQ, xml: %s" % xml_content)
+    handler_email_to_file(xml_content)
+
+    send_html = True
+    if send_html:
+        text_content = html_content
+    else:
+        text_content = xml_content
+
+    if DEBUG_MODE != 'local':
+            send_mail(subject, text_content, from_email, [to,],fail_silently=False)
+
+    return "Success"
+
+def handler(request, tour_slug):
+    if request.method == 'POST':
+        form = TourBookForm(request.POST)
+        template = loader.get_template('tours/handler.html')
+        args = {}
+        args['name'] = 'mengan'
+        Flog.info("Important, Booking, slug-%s" % tour_slug)
+        Flog.info(form.is_valid())
+        context = RequestContext(request, args)
+        rv = handler_email(form)
+        if rv == "Error":
+            args['result'] = 'Error'
+        else:
+            args['result'] = 'Success'
+
+        return HttpResponse(template.render(context))
+    else:
+        template = loader.get_template('tours/handler.html')
+        args = {}
+        args['name'] = 'mengan-get'
+        context = RequestContext(request, args)
+        return HttpResponse(template.render(context))
+
+def charter_a_car_view(request):
+    Flog.info("PV, charter_a_car_view")
+    template = loader.get_template('tours/charteracar.html')
+    args = {}
+    args['name'] = 'mengan-get'
+    context = RequestContext(request, args)
+    return HttpResponse(template.render(context))
+def handler_charter(request):
+    if request.method == 'POST':
+        Flog.info("RQ, handler_charter")
+
+        # init the form
+        form = CharterForm(request.POST)
+
+        template = loader.get_template('tours/handler_charter.html')
+        args = {}
+        args['name'] = 'mengan'
+        #Flog.debug(form.is_valid())
+        context = RequestContext(request, args)
+
+        # send the info to email
+        rv = handler_email(form,'charter')
+        if rv == "Error":
+            args['result'] = 'Error'
+        else:
+            args['result'] = 'Success'
+
+        return HttpResponse(template.render(context))
+    else:
+        template = loader.get_template('tours/handler.html')
+        args = {}
+        args['name'] = 'mengan-get'
+        context = RequestContext(request, args)
+        return HttpResponse(template.render(context))
+
+def pickup_view(request):
+    Flog.info("PV, pickup_view")
+    template = loader.get_template('tours/pickup.html')
+    args = {}
+    args['name'] = 'mengan-get'
+    context = RequestContext(request, args)
+    return HttpResponse(template.render(context))
+def handler_pickup(request):
+    if request.method == 'POST':
+        Flog.info("RQ, handler_pickup")
+
+        # init the form
+        form = PickupForm(request.POST)
+
+        template = loader.get_template('tours/handler_pickup.html')
+        args = {}
+        args['name'] = 'mengan'
+        #Flog.debug(form.is_valid())
+        context = RequestContext(request, args)
+
+        # send the info to email
+        rv = handler_email(form,'pickup')
+        if rv == "Error":
+            args['result'] = 'Error'
+        else:
+            args['result'] = 'Success'
+
+        return HttpResponse(template.render(context))
+    else:
+        template = loader.get_template('tours/handler.html')
+        args = {}
+        args['name'] = 'mengan-get'
+        context = RequestContext(request, args)
+        return HttpResponse(template.render(context))

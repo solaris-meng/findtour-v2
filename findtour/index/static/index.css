@@ -1,0 +1,161 @@
+
+body {
+    width: 100%;
+    height: 100%;
+    line-height: 1.6;
+}
+ 
+html {
+    width: 100%;
+    height: 100%;
+}
+
+.index-bg-container {
+    width: 100%;
+    height: 100%;
+    position:relative;
+    padding:0;
+    overflow:hidden;
+    display: inline-block;
+}
+.index-bg-container img{
+    width: 100%;
+    height: 100%;
+    margin: 0 0;
+    padding: 0 0;
+}
+.index-bg-title-container p{
+    font-size:70px;
+    line-height:70px;
+    font-weight:bold;
+    color:white;
+}
+
+@media (max-width: 768px) {
+.index-bg-title-container {
+    position:absolute;
+    width:100%;
+    height:100px;
+    margin-top:-55px;
+    z-index:1000;
+    text-align:center;
+    top:80%;
+}
+.index-bg-title-container p{
+    font-size:25px;
+    font-weight:bold;
+    line-height:25px;
+    color:white;
+    opacity:0;
+}
+}
+
+@media (min-width: 768px) {
+.index-bg-title-container {
+position:absolute;
+width:100%;
+height:100px;
+margin-top:-55px;
+z-index:1000;
+text-align:center;
+top:50%;
+}
+.service-window {
+    position:absolute;
+    width:100%;
+    height:100px;
+    margin-top:30px;
+    z-index:1000;
+    text-align:center;
+    top:10%;
+    position: absolute;
+    float:top;
+}
+.service-window-con {
+    border:2px solid white;
+}
+.service-window-tl p{
+	font-size: 25px;
+    font-weight: bold;
+    color: white;
+    text-align: left;
+    text-align: center;
+    margin-bottom:20px;
+    margin-top:20px;
+}
+.service-window-it {
+    text-align: left;
+    margin-bottom:40px;
+	font-size: 25px;
+    line-height: 28px;
+    color: white;
+}
+.btn-index-win {
+    margin-bottom:30px;
+}
+
+.index-bg-tl p {
+	font-size: 30px;
+    line-height: 100px;
+    font-weight: bold;
+    text-align:center;
+}
+.index-bg-bottom {
+    text-align:center;
+}
+.index-bg-bottom .index-bg-it {
+    width: 50%;
+    margin: 10px auto;
+}
+.index-bg-bottom .index-bg-it p{
+	font-size: 20px;
+    line-height: 30px;
+    text-align:center;
+}
+.index-destination-tl p {
+	font-size: 53px;
+    line-height: 100px;
+    font-weight: bold;
+    text-align:center;
+}
+.index-destination-btn {
+	font-size: 53px;
+    font-weight: bold;
+    text-align:center;
+    margin-bottom: 50px;
+}
+
+
+/* private tour */
+.private-tour-tl p{
+	font-size: 53px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+.private-tour-form {
+    margin-bottom: 100px;
+}
+
+/* sight */
+.sight-pic-con {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.sight-detail-con {
+    margin-top: 20px;
+    margin-bottom: 100px;
+}
+
+/* about */
+.about-tl p{
+	font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+.about-it p{
+	font-size: 16px;
+}

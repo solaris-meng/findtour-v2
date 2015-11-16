@@ -1,0 +1,26 @@
+
+{% extends "index/base.html" %}
+{% load staticfiles %}
+
+{% block customcss %}
+<link type="text/css" rel="stylesheet" href="{% static 'index.css' %}"/>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 about-tl">
+                <p>About us</p>
+            </div>
+            <div class="col-sm-3">
+            </div>
+            <div class="col-sm-6 about-it">
+                <p>Founded in July of 2015 and based in Beijing, China. FindTour.co is a Chinese online-travel start-up company, aims at improving the experience of travellers in China.</p>
+                <p>Our main services is providing customized private tours in China.</p>
+            </div>
+        </div><!-- end row -->
+    </div><!-- end container -->
+{% endblock %}
+
+<!--
+-->

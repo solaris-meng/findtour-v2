@@ -1,0 +1,78 @@
+
+body {
+    padding: 0;
+}
+.sights-area-list-tl-con {
+    padding: 0;
+    margin: 0 0;
+}
+.sights-area-list-tl img{
+    width: 100%;
+}
+.sights-area-list-tl-relative {
+    position: absolute;
+    text-align: center;
+    width:100%;
+    top: 30%;
+}
+.sights-area-list-tl-relative p {
+    font-size: 50px;
+    color: white;
+    position: relative;
+}
+.sights-area-tl p {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(86, 90, 92);
+    text-align: left;
+}
+
+.sights-area-map img {
+    width: 100%;
+}
+.sights-area-main {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+.sights-area-main-pic-con img{
+    width: 100%;
+}
+.sights-area-main-tl p{
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(86, 90, 92);
+    text-align: left;
+}
+.sight-margin {
+    margin-bottom: 60px;
+}
+
+.sights-area-sight {
+    margin-bottom: 30px;
+}
+.sights-area-sight-pic-con {
+    margin-bottom: 30px;
+}
+.sights-area-sight-pic-con img{
+    width: 100%;
+}
+.sights-area-sight-pic-con p{
+    font-size: 20px;
+    color: rgb(86, 90, 92);
+    text-align: center;
+}
+
+
+.detail-info-tl p{
+    font-size: 30px;
+    color: rgb(86, 90, 92);
+    text-align: left;
+}
+.margin-tp {
+    margin-top:40px;
+}
+.detail-info-des p{
+    font-size: 20px;
+    color: rgb(86, 90, 92);
+    text-align: left;
+}

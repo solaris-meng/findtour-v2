@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<head>
+<link type="text/css" rel="stylesheet" href="{% static 'bootstrap.min.css' %}"/>
+<h1>Hello Meng</h1>
+</head>
+
+<body>
+    <div class="container">    
+        <div class="row">
+            <div class="col-md-6">
+                <p>hello</p>
+            </div>
+            <div class="col-md-6">
+                <p>hello</p>
+            </div>
+        </div>
+    </div>
+</body>

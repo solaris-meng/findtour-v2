@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+{% load staticfiles %}
+<head>
+    <title>China Private Tour</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link type="text/css" rel="stylesheet" href="{% static 'bootstrap.min.css' %}"/>
+
+    <!-- nav goot -->
+    <link type="text/css" rel="stylesheet" href="{% static 'index-nav-foot.css' %}"/>
+    {% block customcss %}
+    {% endblock %}
+
+</head>
+
+<!-- 
+The #page-top ID is part of the scrolling feature.
+The data-spy and data-target are part of the built-in Bootstrap scrollspy function.
+-->
+<body>
+<div class="index-wrapper">
+
+{% block nav %}
+<nav class="nav-index navbar navbar-default ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand nav-brand" href="/">FindTour</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right index-nav-it">
+        <li><a href="/private_tour/">Private Tour</a></li>
+        <li><a href="/sights/">Destinations</a></li>
+<!--
+        <li><a href="/about/">About</a></li>
+-->
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+<div class="push"></div>
+</div><!-- end index-wrapper -->
+
+{% block footer %}
+<div class="container-fluid footer">
+    <div class="container footer-bg footer">
+        <div class="row">
+            <div class="col-md-4">
+                <h2>FindTour</h2>
+                <p class="margin-bottom-20">FindTour.co is a Chinese start-up, aims at improving the experience of travellers in China.</p>
+                <p>Our main services is providing local travel transport solution in China.</p    >
+            </div>
+            <div class="col-md-4">
+                <div class="headline"><h2 class="heading-sm">Useful Links</h2></div>
+                <ul class="list-unstyled link-list">
+                    <li><a href="/about/">About us</a><i class="fa fa-angle-right"></i></li>
+<!--
+                    <li><a href="#">Latest jobs</a><i class="fa fa-angle-right"></i></li>
+                    <li><a href="#">Contact us</a><i class="fa fa-angle-right"></i></li>
+-->
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <div class="headline"><h2 class="heading-sm">Contact Us</h2></div>                
+                <address class="md-margin-bottom-40">
+                    <i class="fa fa-home"></i>Haidian District, Beijing, China<br />
+<!--
+                    <i class="fa fa-phone"></i>Phone: (+86)13811201901 <br />
+-->
+                    <i class="fa fa-globe"></i>Website: <a href="#">www.findtour.co</a> <br />
+                    <i class="fa fa-envelope"></i>Email: <a href="mailto:info@findtour.co">info@findtour.co</a>
+                </address>
+            </div>
+            <div class="col-md-12 copyright-tl">
+                <p>2015 © All Rights Reserved, FindTour Inc.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+<script type="text/javascript" src="{% static 'jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'bootstrap.min.js' %}"></script>
+
+{% block customjs %}
+{% endblock %}
+
+</body>
+</html>

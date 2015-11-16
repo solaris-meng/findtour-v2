@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>China Driver Guide</title>
+
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}tours/unity/assets/css/shop.style.css">
+    
+    <!-- CSS Header and Footer -->
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{{ STATIC_URL }}tours/css/nav-foot.css">
+    <link rel='stylesheet' href="{{ STATIC_URL }}tours/css/form/sky-forms.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}tours/css/tour.css">
+
+    <!-- Baidu -->
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "//hm.baidu.com/hm.js?21af3a8723aed5eb532306e59f2b4457";
+            var s = document.getElementsByTagName("script")[0]; 
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head> 
+
+<body class="header-fixed">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PJ2SG9"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PJ2SG9');</script>
+<!-- End Google Tag Manager -->
+
+<div class="wrapper full-height bnb-grey">
+    <!--=== Header v1 ===-->   
+    <div class="header-v1">
+        <!-- Topbar v3 -->
+        <div class="topbar-v1">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 title-find-tour">
+                    <a href="/">Find Tour</a>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list-inline right-topbar pull-right">
+                            <li class="page-scroll title-welcome">
+                                <a>Welcome </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div><!--/container-->
+        </div>
+        <!-- End Topbar v3 -->
+    </div>
+    <!--=== End Header v5 ===-->
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 charter-bg" id="charter-bg">
+                <img src='{{ STATIC_URL }}tours/temp.jpg'>
+                <p id="charter-bg-p">Charter a Car</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container ">
+        <div class="row charter-car-service-container">
+            <div class="col-md-4 charter-car-service">
+                <i class="fa fa-car"></i>
+                <div class="charter-car-service-tl">
+                    <p>Private Trip</p>
+                </div>
+                <div class="charter-car-service-it">
+                    <p>Design your own itinerary</p>
+                    <p>Avoid crowd, go deeper</p>
+                    <p>Complete comfort</p>
+                </div>
+            </div>
+            <div class="col-md-4 charter-car-service">
+                <i class="fa fa-dollar"></i>
+                <div class="charter-car-service-tl">
+                    <p>One Price</p>
+                </div>
+                <div class="charter-car-service-it">
+                    <p>Include fuel, tips, parking fee</p>
+                    <p>Make your trip easy</p>
+                </div>
+            </div>
+            <div class="col-md-4 charter-car-service">
+                <i class="fa fa-smile-o"></i>
+                <div class="charter-car-service-tl">
+                    <p>Services</p>
+                </div>
+                <div class="charter-car-service-it">
+                    <p>Driver is also a guide</p>
+                    <p>Punctuality and courtesy</p>
+                    <p>24 hours services</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <form action="/tours/handler-charter/" class="form-horizontal charter-car-form" method="POST" id="sky-form">
+                {% csrf_token %}
+                    <div class="form-group">
+                        <label for="startcity" class="col-sm-2 control-label">Location</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="location">
+                                <option>Beijing</option>
+                                <option>Shanghai</option>
+                                <option>Xian</option>
+                                <option>Dunhuang</option>
+                                <option>Chengdu</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="startcity" class="col-sm-2 control-label">Car</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" name="car">
+                                <option>Economy (4 Passengers, 2 Bags)</option>
+                                <option>Standard (4 Passengers, 3 Bags)</option>
+                                <option>Luxury (4 Passengers, 3 Bags)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="days" class="col-sm-2 control-label">Date</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="days" name="date"  placeholder="Start Date, mm/dd/yyyy">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="days" class="col-sm-2 control-label">Days</label>
+                        <div class="col-sm-10">
+                            <input name="days" type="text" class="form-control" id="days" placeholder="Number of days">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input name="fname" type="text" class="form-control" id="inputEmail3" placeholder="First Name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-10">
+                            <input name="email" type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="itinerary" class="col-sm-2 control-label">Itinerary</label>
+                        <div class="col-sm-10">
+                            <textarea name="itinerary" type="text" class="form-control" rows="8" id="itinerary" placeholder="Please provide the destinations you want, our guide will contact you later"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- end row -->
+    </div><!-- end container -->
+
+
+
+    <!--=== Content Part ===-->
+    <!--=== End Content Part ===-->
+
+    
+    <section>
+        <div class="copyright-section">
+            <p>2015 &copy; All Rights Reserved, FindTour.co Inc.</p>
+        </div>
+    </section>
+
+</div><!--/wrapper-->
+
+<!-- JS Global Compulsory -->
+    <!-- jquery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <!-- bootstrap -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var bg1 = document.getElementById("charter-bg");
+        bg1.style.height=$(window).height()*0.4+'px';
+        bg1.style.overflow='hidden';
+        //bg1.style.background="url('http://findtour.personal1440903333.netdna-cdn.com/normal_haituo_2.jpg')";
+
+        //bg1.style.width=$(window).width()+'px';
+        var bgp = document.getElementById("charter-bg-p");
+        bg1.style.lineHeight=$(window).height()*0.3+'px';
+    })
+</script>
+<!--
+<script type="text/javascript">
+    $('#tour-btn').on('click', function cityclick() {
+        if($("#tour-cbx").attr("checked")) {
+            $("#carlist").hide();
+        } else {
+            $("#carlist").show();
+        }
+    })
+</script>
+-->
+<!--[if lt IE 9]>
+    <script src="{{ STATIC_URL }}tours/unity/assets/plugins/respond.js"></script>
+    <script src="{{ STATIC_URL }}tours/unity/assets/plugins/html5shiv.js"></script>
+    <script src="{{ STATIC_URL }}tours/unity/assets/js/plugins/placeholder-IE-fixes.js"></script>    
+<![endif]-->
+<!--[if lt IE 10]>
+    <script src="{{ STATIC_URL }}tours/unity/assets/plugins/sky-forms-pro/skyforms/js/jquery.placeholder.min.js"></script>
+<![endif]-->
+
+</body>
+</html> 

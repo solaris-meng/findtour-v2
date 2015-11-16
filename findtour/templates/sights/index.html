@@ -1,0 +1,156 @@
+
+{% extends "index/base.html" %}
+{% load staticfiles %}
+
+{% block customcss %}
+<link type="text/css" rel="stylesheet" href="{% static 'index.css' %}"/>
+<link type="text/css" rel="stylesheet" href="{% static 'thumbnail-gallery.css' %}"/>
+{% endblock %}
+
+{% block content %}
+<!-- bg -->
+<section id="index-bg-con-con">
+    <div class="index-bg-container" id="index-bg">
+        <img src="{% static 'normal_haituo_2.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+        <div class="index-bg-title-container">
+            <p>Private Tours in China</p>
+        </div>
+    </div>
+</section>
+
+<!-- service -->
+<section class="index-bg-bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 index-bg-tl">
+                <p>Customize Your Trip</p>
+            </div>
+            <div class="index-bg-it">
+                <ol class="list-unstyled">
+                    <li>
+                        <p>1. Describe your dream vacation</p>
+                    </li>
+                    <li>
+                        <p>2. We compete to plan your trip</p>
+                    </li>
+                    <li>
+                        <p>3. Book the customized itinerary</p>
+                    </li>
+                </ol>
+            </div>
+            <a href="/private_tour/" type="button" class="btn btn-primary btn-lg btn-index-win">Plan your Trip</a>
+        </div>
+    </div>
+</section>
+
+<section id="index-bg-con-con-2">
+    <div class="index-bg-container" >
+        <img src="{% static 'zhebang1_Fotor.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+<!--
+        <div class="service-window">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-8">
+                    </div>
+                    <div class="col-md-4 service-window-con">
+                        <div class="service-window-tl">
+                            <p>Private Tour</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+-->
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 index-destination-tl">
+                <p>Destinations</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                <a class="" href="/sights">
+                    <img class="img-responsive" src="{% static 'pic_jinshanling_index_small.jpg' %}" alt="">
+                    <div class="txt-pic">
+                    <p>Beijing</p>
+                    </div>
+                </a>
+                <p>Jinshanling Greatwall</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                <a class="" href="/sights">
+                    <img class="img-responsive" src="{% static 'pic_xian_index_small.jpg' %}" alt="">
+                    <div class="txt-pic">
+                    <p>Xian</p>
+                    </div>
+                </a>
+                <p>Terracotta Army</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                <a class="" href="/sights">
+                    <img class="img-responsive" src="{% static 'pic_dunhuang_index_small.jpg' %}" alt="">
+                    <div class="txt-pic">
+                    <p>Silk Road</p>
+                    </div>
+                </a>
+                <p>Mogao Caves and Paintings</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                <a class="" href="/sights">
+                    <img class="img-responsive" src="{% static 'pic_foxueyuan_index_small.jpg' %}" alt="">
+                    <div class="txt-pic">
+                    <p>Chengdu</p>
+                    </div>
+                </a>
+                <p>Serthar Budda College</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                <a class="" href="/sights">
+                    <img class="img-responsive" src="{% static 'pic_selasi_index_small.jpg' %}" alt="">
+                    <div class="txt-pic">
+                    <p>Tibet</p>
+                    </div>
+                </a>
+                <p>Sera Monastery</p>
+            </div>
+            <div class="col-lg-4 col-md-6 col-xs-12 thumb">
+                <a class="" href="/sights">
+                    <img class="img-responsive" src="{% static 'pic_guilin_index_small.jpg' %}" alt="">
+                    <div class="txt-pic">
+                    <p>Guilin</p>
+                    </div>
+                </a>
+                <p>Fishman in Li River</p>
+            </div>
+
+            <div class="col-lg-12 index-destination-btn">
+                <a href="/sights" class="btn btn-primary btn-lg">Load More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block customjs %}
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        var bg1 = document.getElementById("index-bg-con-con");
+        bg1.style.backgroundColor='red';
+        bg1.style.height=$(window).height()*0.8+'px';
+        bg1.style.width=$(window).width()+'px';
+
+        /*
+        var bg2 = document.getElementById("index-bg-con-con");
+        bg2.style.backgroundColor='red';
+        bg2.style.height=$(window).height()*0.7+'px';
+        bg2.style.width=$(window).width()+'px';
+        */
+
+        });
+</script>
+{% endblock %}
+

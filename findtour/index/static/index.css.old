@@ -1,0 +1,255 @@
+/*
+ * Template Name: Unify - Responsive Bootstrap Template
+ * Description: Business, Corporate, Portfolio, Blog and One Page Theme.
+ * Version: 1.7
+ * Author: @htmlstream
+ * Website: http://htmlstream.com
+*/
+
+/*Import Global Compulsory CSS Files*/
+
+body {
+    width: 100%;
+    height: 100%;
+	line-height: 1.6;    
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+/*Header
+------------------------------------*/
+/*Containers*/
+@media (min-width: 768px) and (max-width: 991px) {
+  	.one-page-header .menu-container {
+	    width: 720px;
+  	}
+}
+
+@media (max-width: 991px) {
+	.one-page-header .menu-container:before,
+	.one-page-header .menu-container:after {
+		content: " ";
+		display: table;
+	}
+
+	.one-page-header .menu-container:after {
+		clear: both;
+	}
+
+	.one-page-header > .navbar-default > .container {
+		width: inherit;
+		margin-left: 0;
+		margin-right: 0;
+		padding-left: 0;
+    	padding-right: 0;
+    }
+	
+	.one-page-header > .navbar-default > .container > .navbar-header,
+	.one-page-header > .navbar-default > .container > .navbar-collapse {
+	  	margin-left: 0;
+	  	margin-right: 0;
+	}
+}
+
+/*Navbar Logo*/
+.one-page-header .navbar-brand {
+	font-size: 41px;
+	font-weight: 500;
+	line-height: 25px;
+	color: #fff !important;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.one-page-header .navbar-brand span {
+	color: #72c02c !important;
+}
+
+@media (max-width: 768px) {
+	.one-page-header .navbar-brand {
+		padding-left: 0;
+	}
+}
+
+/*Navbar*/
+.one-page-header {
+	border-bottom: none;
+	background: rgba(52,52,52,1);
+}
+
+.one-page-header .navbar-nav > li > a {
+	color: #eee;
+	font-size: 20px;
+    margin: 0 10px;
+}
+
+.one-page-header .navbar-nav > li > a:hover {
+	z-index: 1;
+	color: #72c02c;
+}
+
+.one-page-header .navbar-nav > li > a:focus {
+	color: #72c02c;
+}
+
+.one-page-header .navbar-nav > .active > a, 
+.one-page-header .navbar-nav > .active > a:hover,
+.one-page-header .navbar-nav > .active > a:focus {
+	z-index: 1;
+	background: none;
+	color: #72c02c !important;
+}
+
+/*Responsive Navbar*/
+@media (max-width: 991px) {
+	/*Responsive code for max-width: 991px*/
+    .one-page-header .navbar-header {
+        float: none;
+    }
+    
+    .one-page-header .navbar-toggle {
+        display: block;
+    }
+    
+    .one-page-header .navbar-collapse.collapse {
+        display: none !important;
+    }
+    
+    .one-page-header .navbar-collapse.collapse.in {
+        display: block !important;
+    }
+    
+    .one-page-header .navbar-nav {
+        margin: 0 0 5px;
+        float: none !important;
+    }
+
+    .one-page-header .navbar-nav > li {
+        float: none;
+    }
+
+    .navbar-default .navbar-nav > li > a {
+    	padding: 10px 0;
+    }
+
+    .navbar-default .navbar-nav > li > a::before {
+		content: '';
+	}
+}
+
+@media(min-width: 992px) {
+    .one-page-header.navbar {
+        padding: 0px 0;
+        -webkit-transition: background .3s ease-in-out,padding .3s ease-in-out;
+        -moz-transition: background .3s ease-in-out,padding .3s ease-in-out;
+        transition: background .3s ease-in-out,padding .3s ease-in-out;
+    }
+
+    .one-page-header.top-nav-collapse {
+        /* Customize the look and feel of the collapsed top nav here */
+        padding: 7px 0;
+    }
+}
+
+@media (max-width: 768px) {
+	.one-page-header .navbar-nav > li > a:before {
+		content: " ";
+	}    
+}
+
+@media (min-width: 992px) {
+	.one-page-header.navbar .navbar-nav {
+		float: right;
+	}	
+}
+
+/*About Section
+------------------------------------*/
+.intro-section {
+    width: 100%;
+}
+
+/*About Section*/
+.about-section {
+    padding-top: 5px;
+    padding-bottom: 0;
+}
+
+.block-v1 {
+	padding: 50px 0;
+}
+
+.about-section .about-image {
+	padding-top: 100px;
+}
+
+
+/* For tour pic in index.html */
+.cbp-caption-defaultWrap .text-in-pic {
+    position:absolute;
+    width: auto;
+    height: auto;
+    color: #fff;
+	font-size: 43px;
+	line-height: 35px;    
+    z-indent:2;
+    left: 30%;
+    top: 40%;
+}
+
+.copyright-section p{
+    text-align:center;
+}
+
+
+.slider-title-container p{
+    font-size:50px;
+    line-height:50px;
+    font-weight:bold;
+    color:white;
+}
+
+@media (max-width: 768px) {
+.slider-title-container {
+    position:absolute;
+    width:100%;
+    height:100px;
+    margin-top:-55px;
+    z-index:1000;
+    text-align:center;
+    top:80%;
+}
+.slider-title-container p{
+    font-size:25px;
+    font-weight:bold;
+    line-height:25px;
+    color:white;
+    opacity:0;
+}
+}
+
+.slider-title {
+	font-size: 53px;
+    font-weight:500;
+    font-weight: bold;
+    color: white;
+    text-align:center;
+    position:absolute;
+    //position:relative;
+    float:top;
+    z-index:1000;
+    display:inline-block;
+    //margin-top:30%;
+}
+@media (min-width: 768px) {
+.slider-title-container {
+position:absolute;
+width:100%;
+height:100px;
+margin-top:-55px;
+z-index:1000;
+text-align:center;
+top:50%;
+}

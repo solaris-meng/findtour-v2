@@ -1,0 +1,72 @@
+
+{% extends "index/base.html" %}
+{% load staticfiles %}
+
+{% block customcss %}
+<link rel="stylesheet" type="text/css" href="{% static 'sights/sights.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid sights-area-list-tl-con">
+    <div class="row">
+        <div class="col-md-12 sights-area-list-tl">
+            <img src="{% static 'pic_kekexili.jpg' %}" alt="slidebg1" data-bgposition="center center" data-bgrepeat="no-repeat">
+            <div class="sights-area-list-tl-relative">
+                <p>{{ sight.name }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container sight-detail-con">
+    <div class="row">
+        <div class="col-md-12 detail-info-tl margin-tp">
+            <p>Description</p>
+        </div>
+        <div class="col-md-12 detail-info-des">
+            <p>{{ sight.description }} <a href="{{ sight.wiki }}">Read More</a></p>
+        </div>
+        <div class="col-md-12 detail-info-tl margin-tp">
+            <hr>
+            <p>Information</p>
+        </div>
+        <div class="col-md-6 detail-info-des">
+            <p>City: {{sight.city }}</p>
+            <p>Open Time: {{ sight.opentime }}</p>
+        </div>
+        <div class="col-md-6 detail-info-des">
+            <p>Ticket: {{ sight.ticket }}</p>
+            <p>Time for a Visit: {{ sight.timeforvisit }}</p>
+        </div>
+        <div class="col-md-12 detail-info-tl margin-tp">
+            <hr>
+            <p>Reviews</p>
+        </div>
+        <div class="col-md-12 detail-info-des">
+            {% for i in sight.get_review_item %}
+            <p>"{{ i }}"</p>
+            {% endfor %}
+        </div>
+        <div class="col-md-12 detail-info-tl margin-tp">
+            <hr>
+            <p>Tips</p>
+        </div>
+        <div class="col-md-12 detail-info-des">
+            {% for i in sight.get_tips_item %}
+            <p>{{ i }}</p>
+            {% endfor %}
+        </div>
+        <div class="col-md-12 detail-info-tl margin-tp">
+            <hr>
+            <p>Photos</p>
+        </div>
+        {% for i in sight.get_photos_item %}
+        <div class="col-lg-4 col-md-6 col-xs-12 thumb sight-pic-con">
+            <img class="img-responsive" src="/static/{{ i }}" alt="">
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
